@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="https://sb-viper.github.io/MediaPlayer/img/MP.svg" type="image/x-icon">
     <title>Media Player</title>
+    <audio id="backgroundMusic" preload="auto">
+        <source src="19bd9efab4c777c.mp3" type="audio/mpeg">
+      </audio>
+      <audio id="backgroundMusic2" preload="auto">
+        <source src="a7417d97be06323.mp3" type="audio/mpeg">
+      </audio>
+      
 </head>
 <body>
     <div id="home" class="wrapper">
@@ -38,10 +44,10 @@
                         <h1 class="hero__title">Music Player</h1>
                         <div class="hero__text">American company formed in<br> 2002 in Boston, Massachusetts</div>
                     </div>
-                    <div class="hero__image">
-                        <img src="images/Flat iPhone 1.png" alt="IPhone Image">
+                    <div class="hero__image audio-trigger">
+                        <img src="images/Flat iPhone 1.png" alt="IPhone Image"  tabindex="0">
                     </div>
-                    <div class="hero__image-animated">
+                    <div class="hero__image-animated ">
                         <img src="images/headphones_1.png" alt="IPhone Phones">
                     </div>
                 </div>
@@ -147,5 +153,54 @@ millions of songs – from old favorites to the latest hits. Just hit play
             </div>
         </footer>
     </div>    
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var audio = document.getElementById('backgroundMusic');
+          
+          // Запуск музыки при открытии страницы на больших экранах
+          if (window.innerWidth >= 884) {
+            audio.play();
+            audio.loop = true;
+          }
+          
+          
+          
+          // Добавление обработчика события для элемента с классом audio-trigger
+          document.querySelectorAll('.audio-trigger').forEach(function(trigger) {
+            trigger.addEventListener('mouseenter', function() {
+              audio.play();
+              audio.loop = true;
+            });
+            
+            // Добавляем обработчик для выхода мыши из элемента
+            trigger.addEventListener('mouseleave', function() {
+              audio.pause();
+              audio.currentTime = 0; // Сбрасываем позицию к началу
+            });
+          });
+        });
+        </script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var audio = document.getElementById('backgroundMusic2');
+          
+          // Запуск музыки при открытии страницы на больших экранах
+          if (window.innerWidth >= 884) {
+            audio.play();
+            audio.loop = true;
+          }
+          
+          // Проверка фокуса на кнопке и запуск музыки
+          document.querySelector('.page_block__button_link-listennow').addEventListener('focus', function() {
+            audio.play();
+            audio.loop = false;
+          });
+          
+          
+        });
+        </script>
+        
+        
+        
+        
 </body></html>
